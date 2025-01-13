@@ -14,7 +14,12 @@ dependencies:
   - seaborn
   - scikit-learn
   - folium
-  - fastf1
+  - matplotlib
+  - python-dateutil
+  - requests-cache
+  - scipy
+  - rapidfuzz
   - pip:
     - jupyterlite-simple-cors-proxy
- #   - ./packages/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl
+    - fastf1 --no-deps
+    - timple>=0.1.6
