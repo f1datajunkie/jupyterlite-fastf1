@@ -23,4 +23,3 @@ dependencies:
     - jupyterlite-simple-cors-proxy
     - ./packages/fastf1-3.4.4-py3-none-any.whl
     - timple>=0.1.6
-    - websockets
