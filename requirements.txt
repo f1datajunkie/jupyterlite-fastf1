@@ -5,7 +5,8 @@ notebook~=7.2.2
 anywidget
 
 # KERNELS
+jupyterlite-pyodide-kernel
+# It seems as if the fastf1 package can't be built 
+# into the xeus-python kernel because the required
+# websockets package is not available?
 jupyterlite-xeus
-
-# fastf1
-fastf1

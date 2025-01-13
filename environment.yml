@@ -18,6 +18,7 @@ dependencies:
   - python-dateutil
   - requests-cache
   - scipy
+# - rapidfuzz
   - pip:
     - jupyterlite-simple-cors-proxy
     - ./packages/fastf1-3.4.4-py3-none-any.whl
