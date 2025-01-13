@@ -1,0 +1,15 @@
+title: FastF1 JupyterLite Demo
+author: Tony Hirst
+
+lang: en
+
+only_build_toc_files: true
+
+#sphinx:
+#  config:
+#    myst_heading_anchors: 3
+
+
+parse:
+  myst_enable_extensions:
+    - colon_fence

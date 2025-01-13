@@ -1,0 +1,7 @@
+format: jb-book
+root: 00_preface
+
+parts:
+- caption: Getting Started
+  chapters:
+  - file: 05_how_to_use_this_guide

@@ -1,0 +1,63 @@
+name: deploy-book
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+  
+      - name: Install the dependencies
+        run: |
+          python -m pip install -r requirements.txt
+
+      - name: Build the JupyterLite site
+        run: |
+          mkdir -p ./content
+          mkdir -p ./content/packages
+          cp README.md content
+          cp ./src/*.ipynb ./content/
+          cp ./packages/*.whl ./content/packages/
+          jupyter lite build --contents content --output-dir dist
+          touch ./dist/.nojekyll
+  
+      - name: Build the Jupyter Book site
+        run: |
+          python -m pip install -r requirements_book.txt
+          jupyter-book build ./src
+          mkdir -p ./dist/book
+          cp -r ./src/_build/html/* ./dist/book/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        

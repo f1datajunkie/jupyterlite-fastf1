@@ -1,0 +1,19 @@
+name: xeus-python-kernel
+channels:
+  - https://repo.mamba.pm/emscripten-forge
+  - conda-forge
+dependencies:
+  - pip
+  - xeus-python
+  - anywidget
+  - requests
+  - pandas
+  - plotnine
+  - numpy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - folium
+  - pip:
+    - jupyterlite-simple-cors-proxy
+    - ./packages/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl

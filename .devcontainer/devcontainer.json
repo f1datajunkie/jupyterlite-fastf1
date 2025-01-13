@@ -1,0 +1,33 @@
+{
+    "name": "Python Jupyter Development",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    
+    // Configure tool-specific properties
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+            }
+        }
+    },
+
+    // Install dependencies and Jupyter
+    "postCreateCommand": "pip install --user ipykernel jupyter jupyterlab requests pandas numpy matplotlib seaborn scikit-learn plotnine folium fastf1",
+
+    "forwardPorts": [],
+
+    "postStartCommand": "",
+
+    // Comment out the next line to run as root instead
+    "remoteUser": "vscode",
+
+    // Add more features if needed
+    "features": {
+    }
+}
