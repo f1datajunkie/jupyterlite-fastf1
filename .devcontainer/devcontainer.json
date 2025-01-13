@@ -18,7 +18,7 @@
     },
 
     // Install dependencies and Jupyter
-    "postCreateCommand": "pip install --user ipykernel jupyter jupyterlab requests pandas numpy matplotlib seaborn scikit-learn plotnine folium fastf1",
+    "postCreateCommand": "pip install --user ipykernel jupyter jupyterlab requests pandas numpy matplotlib seaborn scikit-learn plotnine folium fastf1 jupyterlite-simple-cors-proxy",
 
     "forwardPorts": [],
 
