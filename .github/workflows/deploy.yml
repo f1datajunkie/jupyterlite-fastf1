@@ -27,7 +27,7 @@ jobs:
           mkdir -p ./content
           mkdir -p ./content/packages
           cp README.md content
-          cp ./src/*.ipynb ./content/
+          cp ./demo.ipynb ./content/
           cp ./packages/*.whl ./content/packages/
           jupyter lite build --contents content --output-dir dist
           touch ./dist/.nojekyll

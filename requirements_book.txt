@@ -1,0 +1,13 @@
+jupyter-book
+
+requests
+pandas
+plotnine
+numpy
+matplotlib
+seaborn
+scikit-learn
+folium
+jupyterlite-simple-cors-proxy
+
+fastf1
