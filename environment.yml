@@ -20,6 +20,6 @@ dependencies:
   - scipy
   - pip:
     - jupyterlite-simple-cors-proxy
-    - fastf1 --no-deps
+    - "fastf1 --no-deps"
     - timple>=0.1.6
     - ./packages/rapidfuzz-3.11.0-cp312-cp312-emscripten.whl
