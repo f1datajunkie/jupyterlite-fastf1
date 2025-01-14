@@ -1,12 +1,12 @@
 # jupyterlite-fastf1
 
-This template repository provides an example of running `fastf1` (*not live timing*) in a browser based JupyterLite environment. JupyterLite provides access to JupyterLab and Jupyert notebook environments, with ih-browser code exeuction using a Pyodide (WASM Python) environment.
+This template repository provides an example of running `fastf1` (*not live timing*) in a browser based JupyterLite environment. JupyterLite provides access to JupyterLab and Jupyter notebook environments, with in-browser code exeuction using a Pyodide (WASM Python) environment.
 
 *Although `xeus-python` kernels are availble for JupyterLite, `fastf1` currently only works in a `pyodide` kernel.*
 
 In order to run `fastf1` in a `pyodide` envrionment, you need to manually install several dependencies. See the [`demo.ipynb`](./demo.ipynb) notebook for an example.
 
-Guide to using this reposistory available as a Juopyter Book / ebook [here](https://f1datajunkie.github.io/book).
+Guide to using this reposistory available as a Jupyter Book / ebook [here](https://f1datajunkie.github.io/book).
 
 Example JupyterLite/JupyterLab environment: [view demo](https://f1datajunkie.github.io/jupyterlite-fastf1/lab/index.html?path=demo.ipynb)
 
