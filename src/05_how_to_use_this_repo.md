@@ -1,17 +1,16 @@
 # How To Use This Repository
 
-The repository is defined as a template repository, which means you can easily clone it and use it to construct your own JupyterLite environment.
+The [`f1datajunkie/jupyterlite-fastf1/`](https://github.com/f1datajunkie/jupyterlite-fastf1/) repository is defined as a template repository, which means you can easily clone it and use it to construct your own JupyterLite environment.
 
 The repository includes a Github Action that will build an appropriately configured JupyterLite site.
 
-The intention is also to publish a pre-configured `xeus-python` kernel bubndling all required packages, but this is currently waiting on the appearance of a couple of packages in *emscripten-forge*.
+The intention is also to publish a pre-configured `xeus-python` kernel bundling all required packages, but this is currently waiting on the appearance of a couple of packages in *emscripten-forge*.
 
 Notes on getting `fastf1` running in JupyterLite:
 
 - __unsupported dependencies__: the `fastf1` package has a top-level requirement on the `rapidfuzz` package. If `rapidfuzz` isn’t available, you can't use `fastf1`. BUT, there is no generic any platform wheel available for `rapidfuzz`, and (currently) no *emscripten-forge* build available, which means we can’t easily install the package. But after raising an issue on the repo, a pyodide wasm build was made available there, so now we can install the package manually in a Pyodide kernel. This can either be done via a locally vendored package, or by loading the package direct from a URL.
 
 ```python
-
 # Pyodide kernel
 import micropip
 await micropip.install("emfs:/drive/packages/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl")
