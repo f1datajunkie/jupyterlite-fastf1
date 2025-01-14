@@ -6,6 +6,8 @@ This template repository provides an example of running `fastf1` (*not live timi
 
 In order to run `fastf1` in a `pyodide` envrionment, you need to manually install several dependencies. See the [`demo.ipynb`](./demo.ipynb) notebook for an example.
 
+Guide to using this reposistory available as a Juopyter Book / ebook [here](https://f1datajunkie.github.io/book).
+
 Example JupyterLite/JupyterLab environment: [view demo](https://f1datajunkie.github.io/jupyterlite-fastf1/lab/index.html?path=demo.ipynb)
 
 Example JupyterLite/notebook environment: [view demo](https://f1datajunkie.github.io/jupyterlite-fastf1/tree/index.html?path=demo.ipynb)
