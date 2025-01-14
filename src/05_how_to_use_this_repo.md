@@ -1,6 +1,6 @@
 # How To Use This Repository
 
-The [`f1datajunkie/jupyterlite-fastf1/`](https://github.com/f1datajunkie/jupyterlite-fastf1/) repository is defined as a template repository, which means you can easily clone it and use it to construct your own JupyterLite environment.
+The [`f1datajunkie/jupyterlite-fastf1/`](https://github.com/f1datajunkie/jupyterlite-fastf1/) repository is defined as a template repository, which means you can easily clone it and use it to construct your own JupyterLite environment. *Alternatively, you can just access the JuptyerLite environment from the GitHub pages site built from this repo [here](../). See the [`demo.ipynb`](../lab/index.html?path=demo.ipynb) notebook for example usage.*
 
 The repository includes a Github Action that will build an appropriately configured JupyterLite site.
 
