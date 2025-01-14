@@ -12,7 +12,7 @@ Example JupyterLite/JupyterLab environment: [view demo](https://f1datajunkie.git
 
 Example JupyterLite/notebook environment: [view demo](https://f1datajunkie.github.io/jupyterlite-fastf1/tree/index.html?path=demo.ipynb)
 
-This template repository also includes a Github Action to create the JupyterLite environment and publish it to GitHub Pages. The action also publishes a Jupyter Book genereated from specified files in the repository to the `book/` path on the Pages site.
+This template repository also includes a Github Action to create the JupyterLite environment and publish it to GitHub Pages. The action also publishes a Jupyter Book generated from specified files in the repository to the `book/` path on the Pages site.
 
 __Related blog posts:__
 
