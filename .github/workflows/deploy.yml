@@ -39,6 +39,13 @@ jobs:
           mkdir -p ./dist/book
           cp -r ./src/_build/html/* ./dist/book/
 
+      - name: Build the wheelhouse
+        run: |
+          mkdir -p ./content/wheelhouse
+          mkdir -p ./content/wheelhouse/wheelhouse
+          cp wheelhouse.html ./content/wheelhouse/index.html
+          cp packages/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl ./content/wheelhouse/wheelhouse/ 
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
