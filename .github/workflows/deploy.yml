@@ -48,11 +48,10 @@ jobs:
       - name: Build shinylive site
         run: |
          python -m pip install -r requirements_shiny.txt
-         cd ./src
          shinylive export shinyapp shinysite  --subdir app1
          
-         mkdir -p ../dist/shinylive
-         cp -r ./shinysite/* ../dist/shinylive/
+         mkdir -p ./dist/shinylive
+         cp -r ./shinysite/* ./dist/shinylive/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
