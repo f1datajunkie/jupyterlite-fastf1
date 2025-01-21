@@ -1,0 +1,11 @@
+jupyterlite_simple_cors_proxy
+
+https://f1datajunkie.github.io/jupyterlite-fastf1/wheelhouse/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl
+https://files.pythonhosted.org/packages/ab/0d/d244a9b1bec00c950e864938990b180b1d70c1be9ef2ab37ac41df23ef05/fastf1-3.4.4-py3-none-any.whl
+
+pandas
+requests
+attrs
+cattrs
+platformdirs
+url-normalize

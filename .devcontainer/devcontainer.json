@@ -18,7 +18,7 @@
     },
 
     // Install dependencies and Jupyter
-    "postCreateCommand": "pip install --user ipykernel jupyter jupyterlab requests pandas numpy matplotlib seaborn scikit-learn plotnine folium fastf1 jupyterlite-simple-cors-proxy",
+    "postCreateCommand": "mkdir -p ~/opt && pip install --user ipykernel jupyter jupyterlab requests requests-cache pandas numpy matplotlib seaborn scikit-learn plotnine folium jupyterlite-simple-cors-proxy montydb sqlite-utils shinylive && ARCH=$(uname -m) && if [ \"$ARCH\" = \"aarch64\" ] || [ \"$ARCH\" = \"arm64\" ]; then QUARTO_ARCH=\"arm64\"; else QUARTO_ARCH=\"amd64\"; fi && wget \"https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.40/quarto-1.6.40-linux-${QUARTO_ARCH}.tar.gz\" && tar -C ~/opt -xvzf \"quarto-1.6.40-linux-${QUARTO_ARCH}.tar.gz\" && quarto add r-wasm/quarto-live",
 
     "forwardPorts": [],
 
