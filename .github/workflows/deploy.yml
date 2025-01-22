@@ -43,7 +43,7 @@ jobs:
         run: |
           mkdir -p ./dist/wheelhouse
           cp wheelhouse.html ./dist/wheelhouse/index.html
-          cp packages/rapidfuzz-3.11.0-cp312-cp312-pyodide_2024_0_wasm32.whl ./dist/wheelhouse/ 
+          cp packages/*.whl ./dist/wheelhouse/ 
 
       - name: Build shinylive site
         run: |
