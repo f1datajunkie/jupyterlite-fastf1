@@ -35,61 +35,90 @@ ui.input_select(
     list(range(2023, 2025)),
 )
 
-ui.input_action_button("refresh", "Refresh Plot"),
-
-session = fastf1.get_session(2025, "Bahrain", "Q")
-session.load(telemetry=False, laps=True, weather=False)
-
-@reactive.event(input.refresh)
-def refresh_plot():
-    # Any logic you want to trigger on button click can go here
-    return None
-
-
-# Server logic
-@render.text
-def result():
-    try:
-        # Example FastF1 data fetch
-        season = fastf1.get_event_schedule(int(input.season()))
-        return (
-            f"Successfully loaded {len(season)} races from the {input.season()} season"
-        )
-    except Exception as e:
-        return f"Error loading data: {str(e)}"
+ui.input_checkbox_group(
+    "data_options",
+    "Data channels",
+    {
+        "laps": "laps",
+        "telemetry": "telemetry",
+        "weather": "weather",
+        "messages": "messages",
+    },
+)
+# ui.input_action_button("relad_data", "Reload data")
+# ui.input_action_button("refresh_session", "Refresh session")
 
 
-@render.ui
-def styled_table():
+@reactive.calc
+def season_data():
+    # Example FastF1 data fetch
+    season = fastf1.get_event_schedule(int(input.season()))
+    return season
+
+
+@reactive.calc
+def session_data():
+    data_options = input.data_options()
     session = fastf1.get_session(int(input.season()), "Bahrain", "Q")
-    session.load(telemetry=False, laps=True, weather=False)
+    session.load(
+        telemetry="telemetry" in data_options,
+        laps="laps" in data_options,
+        weather="weather" in data_options,
+        messages="messages" in data_options,
+    )
+    # session.load()
+    return session
 
-    data = session.laps.pick_driver("LEC")
-    
 
-    # Assuming df is your styled dataframe
-    styled_html = data.head(3).style.to_html()
-    return ui.HTML(styled_html)
+@reactive.effect
+def _():
+    print(f"Data options have changed to {input.data_options()}")
 
-# TO DO - how can we know when the data has loaded?
-@render.plot(alt="A Seaborn histogram on penguin body mass in grams.")
-def plot():
-    session = fastf1.get_session(int(input.season()), "Bahrain", "Q")
-    session.load(telemetry=False, laps=True, weather=False)
 
-    fast_leclerc = session.laps.pick_driver("LEC").pick_fastest()
+with ui.navset_card_underline():
 
-    lec_car_data = fast_leclerc.get_car_data()
+    with ui.nav_panel("season"):
 
-    t = lec_car_data["Time"]
-    vCar = lec_car_data["Speed"]
+        @render.ui  
+        def season_frame():
+            season = season_data()
+            styled_html = season.head(3).style.to_html()
+            return ui.HTML(styled_html)
 
-    # The rest is just plotting
-    fig, ax = plt.subplots()
-    ax.plot(t, vCar, label="Fast")
-    ax.set_xlabel("Time")
-    ax.set_ylabel("Speed [Km/h]")
-    ax.set_title("Leclerc is")
-    ax.legend()
-    # plt.show()
-    return ax
+    with ui.nav_panel("session"):
+
+        @render.ui
+        def laps_frame():
+            if "laps" not in input.data_options():
+                return ui.HTML("<div><em>You must load <tt>laps</tt> data for this view.</em></div>")
+            else:
+                session = session_data()
+                data = session.laps.pick_driver("LEC")
+                styled_html = data.head(3).style.to_html()
+                return ui.HTML(styled_html)
+
+    with ui.nav_panel("fastlap"):
+
+        @render.plot(alt="A fast lap...")
+        def fast_laps():
+            if "telemetry" not in input.data_options():
+                return ui.HTML("<div><em>You must load <tt>laps<.<tt>telemetry</tt> data for this view.</em></div>")
+            else:
+                session = session_data()
+                fast_driver = session.laps.pick_driver("LEC").pick_fastest()
+
+                # data = fast_driver.get_car_data()
+                # styled_html = data.head(3).style.to_html()
+                # return ui.HTML(styled_html)
+                fast_data = fast_driver.get_car_data()
+                t = fast_data["Time"]
+                vCar = fast_data["Speed"]
+
+                # The rest is just plotting
+                fig, ax = plt.subplots()
+                ax.plot(t, vCar, label="Fast")
+                ax.set_xlabel("Time")
+                ax.set_ylabel("Speed [Km/h]")
+                ax.set_title("Leclerc")
+                ax.legend()
+                return ax
