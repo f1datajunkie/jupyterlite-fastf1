@@ -10,6 +10,8 @@ from jupyterlite_simple_cors_proxy.fastf1_proxy import (
     enable_cors_proxy as fastf1_cors_proxy,
 )
 
+# The fastf1_cors_proxy() returns an object that shiny will
+# try (and fail) to render...
 _ = fastf1_cors_proxy(
     domains=["api.formula1.com", "livetiming.formula1.com"],
     # debug=True,
@@ -23,7 +25,6 @@ from shiny import render, reactive
 from shiny.express import ui, input
 
 from matplotlib import pyplot as plt
-import fastf1
 import fastf1.plotting
 
 fastf1.plotting.setup_mpl(misc_mpl_mods=False, color_scheme="fastf1")
@@ -52,13 +53,12 @@ ui.input_checkbox_group(
         "messages": "messages",
     },
 )
-# ui.input_action_button("relad_data", "Reload data")
-# ui.input_action_button("refresh_session", "Refresh session")
 
 
 @reactive.calc
+@reactive.event(input.season)
 def season_data():
-    # Example FastF1 data fetch
+    # FastF1 data fetch
     season = fastf1.get_event_schedule(int(input.season()))
     return season
 
@@ -74,7 +74,6 @@ def session_data():
         weather="weather" in data_options,
         messages="messages" in data_options,
     )
-    # session.load()
     return session
 
 
@@ -122,6 +121,7 @@ def update_fast_driver_select():
 
 
 @reactive.effect
+@reactive.event(input.data_options)
 def _():
     print(f"Data options have changed to {input.data_options()}")
 
@@ -129,7 +129,6 @@ def _():
 with ui.navset_card_underline():
 
     with ui.nav_panel("season"):
-
         @render.data_frame
         def season_frame():
             season = season_data()
@@ -143,7 +142,6 @@ with ui.navset_card_underline():
             return ui.HTML(html)
 
     with ui.nav_panel("session"):
-
         @render.ui
         def session_info():
             if "session" not in input.data_options():
@@ -181,7 +179,6 @@ with ui.navset_card_underline():
                 return render.DataGrid(data)
 
     with ui.nav_panel("fastlap"):
-
         # Create fast driver selector
         ui.input_select(
             "fast_driver",

@@ -5,6 +5,7 @@ https://files.pythonhosted.org/packages/ab/0d/d244a9b1bec00c950e864938990b180b1d
 
 pandas
 requests
+requests-cache
 attrs
 cattrs
 platformdirs
